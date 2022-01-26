@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% macro render_field(field)%}
+
+{{ field }}
+
+{% endmacro %}
+
+{% block content %}
+<div class="form-wrapper">
+    <form method="POST" action="{{ url_for('print_markov') }}">
+        <table border=1>
+            <th>
+                {% for field in fields %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+            </th>
+            {% for field in fields %}
+                <tr>
+                    <td>{{ field }}</td>
+                    {% for other_field in fields %}
+                        <td>
+                            <fieldset class="form-field">
+                                {{ form|attr(field + "_to_" + other_field)(size=5) }}
+                            </fieldset>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}

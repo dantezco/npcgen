@@ -6,23 +6,23 @@ default: help
 # Create the project's virtual environment
 create-venv:
 	( \
-		python3.8 -m venv venv; \
+		python3.9 -m venv venv; \
 		. ./venv/bin/activate; \
-		pip install --upgrade pip; \
+		pip3 install --upgrade pip; \
 	)
 
 # Install all dependencies to local environment
 install-dev:
 	( \
 		. ./venv/bin/activate; \
-		pip install -r requirements.txt; \
+		pip3 install -r requirements.txt; \
 	)
 
 # Builds the requirements.txt file with current
 freeze:
 	( \
 		. ./venv/bin/activate; \
-		pip freeze > requirements.txt; \
+		pip3 freeze > requirements.txt; \
 	)
 
 # Formats the code through Black

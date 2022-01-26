@@ -1,6 +1,6 @@
-# Flask project template
+# NPC Gen
 
-I should probably write something here too.
+A framework to generate NPC, initially for my fnv_tt project.
 
 
 ## TODO

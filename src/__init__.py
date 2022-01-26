@@ -1,1 +1,1 @@
-from src.app_flask import app
+from src.routes import app
