@@ -9,34 +9,47 @@ from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 
 from src.forms.markov import ChooseAttributesForm, create_dynamic_form
+from src.markov.parser import MarkovModel
 from src.system.charsheet import Charsheet, FNVTT_ATTRIBUTES
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
 
 
-@app.route("/mc", methods=["GET", "POST"])
-def markov_choose():
+@app.route("/choose_section", methods=["GET", "POST"])
+def choose_section():
+    """Where the user chooses the attributes to generate the markov chain"""
     form = ChooseAttributesForm()
     if form.validate_on_submit():
         print(form)
         return form
-    return render_template('markov_choose.html', form=form, template="form-template")
+    return render_template('choose_section.html', form=form, template="form-template")
 
 
-@app.route("/mi", methods=["GET", "POST"])
+@app.route("/markov_input", methods=["GET", "POST"])
 def markov_input():
-    """Sample path function"""
+    """Markov graph definition screen"""
     if len(request.form) > 0:
         fields = request.form["choices"][2:-2].split("', '")
         form = create_dynamic_form(fields=fields)
+        form.fields.data = ",".join(fields)
         return render_template("markov_input.html", fields=fields, form=form)
     return "You should not be seeing this"
 
+
 @app.route("/results", methods=["GET", "POST"])
-def print_markov():
+def process_input():
     form = request.form
-    return form
+    parser = MarkovModel(payload=form)
+    result = parser.process_form()
+    return f"{str(result)}<br><br>{form['class_name']}"
+
+
+"""Next steps
+STORE NEWLY CREATED CLASS
+LIST ALL AVAILABLE CLASSES, BUTTONS TO EDIT OR CREATE NEW CHARACTER OF CHOSEN CLASS
+CREATE NEW CHARACTER SCREEN - GENERATE MARKOV STUFF, DISPLAY WITH FIELDS FOR OTHER THINGS, LIKE NAME AND STUFF
+"""
 
 @app.route("/")
 def test_screen():

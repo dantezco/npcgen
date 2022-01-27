@@ -9,6 +9,11 @@
 {% block content %}
 <div class="form-wrapper">
     <form method="POST" action="{{ url_for('print_markov') }}">
+        <fieldset class="form-field">
+            {{ form.class_name.label }}
+            {{ form.class_name }}
+        </fieldset>
+
         <table border=1>
             <th>
                 {% for field in fields %}
@@ -21,7 +26,7 @@
                     {% for other_field in fields %}
                         <td>
                             <fieldset class="form-field">
-                                {{ form|attr(field + "_to_" + other_field)(size=5) }}
+                                {{ form|attr(field + "_to_" + other_field)(size=1) }}
                             </fieldset>
                         </td>
                     {% endfor %}
@@ -29,6 +34,7 @@
             {% endfor %}
         </table>
 
+        {{ form.fields }}
         {{ form.submit }}
     </form>
 </div>
