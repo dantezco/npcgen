@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>Choose your RPG system:</h2>
+
+<ul>
+{% for system in systems %}
+   <li> <a href={{url_for('choose_character', system_name=system)}}>{{system}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

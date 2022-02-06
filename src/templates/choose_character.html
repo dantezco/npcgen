@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>NPCs in {{system_name}}:</h2>
+
+<ul>
+{% for index, character in characters %}
+   <li><a href={{url_for("view_character", system_name=system_name, index=index)}}>{{character}}</a></li>
+{% endfor %}
+</ul>
+
+
+New Character<br>
+<a href={{url_for("create_new_class", system_name=system_name)}}>Create new class</a><br>
+{% endblock %}

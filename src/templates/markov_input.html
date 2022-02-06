@@ -1,38 +1,42 @@
 {% extends 'base.html' %}
 
-{% macro render_field(field)%}
-
-{{ field }}
-
-{% endmacro %}
-
 {% block content %}
 <div class="form-wrapper">
-    <form method="POST" action="{{ url_for('print_markov') }}">
+    <form
+        method="POST"
+        action={{ url_for("process_new_class", system_name=system_name) }}
+        onSubmit="return confirm('Are you sure you wish to save?');">
+
+        <h2>Create new class</h2>
+
         <fieldset class="form-field">
             {{ form.class_name.label }}
             {{ form.class_name }}
         </fieldset>
 
+        <br>
+        {% for section in fields %}
+        <h3>{{ section }}</h3>
         <table border=1>
             <th>
-                {% for field in fields %}
+                {% for field in fields[section] %}
                     <td>{{ field }}</td>
                 {% endfor %}
             </th>
-            {% for field in fields %}
+            {% for field in fields[section] %}
                 <tr>
                     <td>{{ field }}</td>
-                    {% for other_field in fields %}
+                    {% for other_field in fields[section] %}
                         <td>
                             <fieldset class="form-field">
-                                {{ form|attr(field + "_to_" + other_field)(size=1) }}
+                                {{ form|attr(section + "_" + field + "_to_" + other_field)(size=1) }}
                             </fieldset>
                         </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </table>
+        {% endfor %}
 
         {{ form.fields }}
         {{ form.submit }}

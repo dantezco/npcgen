@@ -1,1 +1,0 @@
-IDENTIFIER_FNVTT = "fnv_tt"

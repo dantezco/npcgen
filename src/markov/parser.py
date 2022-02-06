@@ -1,6 +1,6 @@
-class MarkovModel:
+class MarkoProbabilityMap:
     def __init__(self, payload: dict):
-        self.fields = payload.get("fields").split(",")
+        self.fields = payload.get("fields")
         self.payload = payload
 
     def parse_markov_payload(self) -> list[list[float]]:
@@ -13,13 +13,14 @@ class MarkovModel:
         return markov_mapping
 
     @staticmethod
-    def validate_line_weights(map_line: list):
+    def balance_node(map_line: list):
         if sum(map_line) <= 1:
             highest_value = map_line.index(max(map_line))
             missing = 1 - sum(map_line)
             map_line[highest_value] += missing
 
-    def fill_zeroed_weights(self, node: list[float]):
+    @staticmethod
+    def fill_zeroed_weights(node: list[float]):
         zeros_index = []
         current_total = 0
         for i, weight in enumerate(node):
@@ -37,10 +38,10 @@ class MarkovModel:
             if sum(node) > 1:
                 raise ValueError(f"Line {node} adds up to more than 1: {sum(node)}")
             self.fill_zeroed_weights(node=node)
-            self.validate_line_weights(map_line=node)
+            self.balance_node(map_line=node)
         return mapping
 
-    def process_form(self):
+    def balance_weights(self):
         markov_mapping_raw = self.parse_markov_payload()
         balanced_mapping = self.balance_mapping(markov_mapping_raw)
         return balanced_mapping

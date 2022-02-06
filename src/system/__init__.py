@@ -1,0 +1,7 @@
+from src.system.fnv_tt.fields import FNVTT_ATTRIBUTES
+
+IDENTIFIER_FNVTT = "fnv_tt"
+
+SYSTEMS_ATTRIBUTES = {
+    IDENTIFIER_FNVTT: FNVTT_ATTRIBUTES
+}

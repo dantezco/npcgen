@@ -33,6 +33,7 @@ py==1.11.0
 pydantic==1.9.0
 PyDTMC==6.10.0
 pylint==2.12.2
+pymongo==4.0.1
 pyparsing==3.0.6
 pytest==6.2.5
 pytest-cov==3.0.0
