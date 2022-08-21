@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <form
+        method="POST"
+        onSubmit="return confirm('Are you sure you wish to save this new character?');">
+
+        <h2>Create new character</h2>
+
+        <fieldset class="form-field">
+            {{ form.level.label }}
+            {{ form.level }}
+        </fieldset>
+
+        <br>
+
+        <fieldset class="form-field">
+            {{ form.char_class.label }}
+            {{ form.char_class }}
+        </fieldset>
+
+        <br>
+
+        {{ form.fields }}
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}

@@ -7,6 +7,8 @@ cycler==0.11.0
 dominate==2.6.0
 Flask==2.0.2
 Flask-Bootstrap==3.3.7.1
+Flask-Breadcrumbs==0.5.1
+Flask-Menu==0.7.2
 Flask-WTF==1.0.0
 fonttools==4.28.5
 greenlet==1.1.2
@@ -26,7 +28,6 @@ numpy==1.22.1
 packaging==21.3
 pathspec==0.9.0
 Pillow==9.0.0
-pkg_resources==0.0.0
 platformdirs==2.4.0
 pluggy==1.0.0
 py==1.11.0

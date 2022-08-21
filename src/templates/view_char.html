@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{form['name']}} - {{form['char_class']}} level {{form['level']}}</h2>
+
+<p>
+    {% for field in form %}
+        {% if field not in ('_id', 'char_class', 'name', 'level') %}
+            {% if form[field] is not mapping %}
+                <b>{{ field }}:</b> {{ form[field] }}<br>
+            {% else %}
+                <b>{{ field }}</b><br>
+                {% for subfield in form[field] %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>{{ subfield }}:</b> {{ form[field][subfield] }}<br>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</p>
+{% endblock %}

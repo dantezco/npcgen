@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <form
+        method="POST"
+
+        onSubmit="return confirm('Are you sure you wish to save this new class?');">
+
+        <h2>Create new class</h2>
+
+        <fieldset class="form-field">
+            {{ form.class_name.label }}
+            {{ form.class_name }}
+        </fieldset>
+
+        <br>
+
+        <fieldset class="form-field">
+            {{ form.has_name.label }}
+            {{ form.has_name }}
+        </fieldset>
+
+        <br>
+
+        {% for section in fields %}
+        <h3>{{ section }}</h3>
+        <table border=1>
+            <th>
+                {% for field in fields[section] %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+            </th>
+            <tr>
+                <td>Probabilities</td>
+                {% for field in fields[section] %}
+                    <td>
+                        <fieldset class="form-field">
+                            {{ form|attr(section + "_" + field)(size=1) }}
+                        </fieldset>
+                    </td>
+                {% endfor %}
+            </tr>
+
+        </table>
+        {% endfor %}
+
+        {{ form.fields }}
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}

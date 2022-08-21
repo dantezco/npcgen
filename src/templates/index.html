@@ -6,7 +6,8 @@
 
 <ul>
 {% for system in systems %}
-   <li> <a href={{url_for('choose_character', system_name=system)}}>{{system}}</a></li>
+   <li> <a href={{url_for('choose_character_route', system_name=system)}}>{{system}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
+

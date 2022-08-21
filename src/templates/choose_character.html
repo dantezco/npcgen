@@ -5,12 +5,13 @@
 <h2>NPCs in {{system_name}}:</h2>
 
 <ul>
-{% for index, character in characters %}
-   <li><a href={{url_for("view_character", system_name=system_name, index=index)}}>{{character}}</a></li>
+{% for char_id, char_name in characters %}
+   <li><a href={{url_for("view_character_route", system_name=system_name, char_id=char_id)}}>{{char_name}}</a></li>
 {% endfor %}
 </ul>
 
+<a href={{url_for("create_character_route", system_name=system_name)}}>New Character</a><br>
+<a href={{url_for("create_new_class_complete_route", system_name=system_name)}}>Create New Class - Complete</a><br>
+<a href={{url_for("create_new_class_simple_route", system_name=system_name)}}>Create New Class - Simple</a><br>
 
-New Character<br>
-<a href={{url_for("create_new_class", system_name=system_name)}}>Create new class</a><br>
 {% endblock %}

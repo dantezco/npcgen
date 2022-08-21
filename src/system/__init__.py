@@ -1,7 +1,13 @@
-from src.system.fnv_tt.fields import FNVTT_ATTRIBUTES
+"""Changes the dataset being treated based on system type"""
 
-IDENTIFIER_FNVTT = "fnv_tt"
+from src.system.fnv_tt.charsheet import (
+    FNVTT_NUMERIC_ATTRIBUTES,
+    IDENTIFIER_FNVTT,
+    NewVegasNPC,
+)
 
-SYSTEMS_ATTRIBUTES = {
-    IDENTIFIER_FNVTT: FNVTT_ATTRIBUTES
+SYSTEMS_ATTRIBUTES = {IDENTIFIER_FNVTT: FNVTT_NUMERIC_ATTRIBUTES}
+
+NPC_TEMPLATE = {
+    IDENTIFIER_FNVTT: NewVegasNPC,
 }
