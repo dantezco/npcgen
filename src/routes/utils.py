@@ -26,7 +26,7 @@ def convert_simple_class_data_to_complete(form: ImmutableMultiDict[str, str]):
     form_complete_data = {}
 
     # adds weighted fields to new form dict
-    for section in form_weights.items():
+    for section in form_weights:
         weights = form_weights[section]
         field_labels = list(form_weights[section].keys())
         complete_section = {}
